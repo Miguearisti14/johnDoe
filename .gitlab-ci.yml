@@ -1,0 +1,15 @@
+# The Docker image that will be used to build your app
+image: node
+# Functions that should be executed before the build script is run
+
+deploy:
+  before_script:
+    - mkdir public
+  script:
+    - shopt -s extglob
+    - mv !(public) public/
+  artifacts:
+    paths:
+      # The folder that contains the files to be exposed at the Page URL
+      - public
+  pages: true
